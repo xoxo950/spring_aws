@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+ <!-- mapper : DAO 역할하는 Mapper클래스 연결  -->
+<mapper namespace="kr.smhrd.mapper.MemberMapper">
+    <!-- id = 메소드명 resultType = 반환타입 parameterType = 매개변수타입 -->
+  <select id="joinService" parameterType="kr.smhrd.model.MemberVO">
+    insert into web_member values(#{email}, #{pw}, #{tel}, #{addr})
+  </select>
+  
+      <!-- id = 메소드명 resultType = 반환타입 parameterType = 매개변수타입 -->
+  <select id="loginService" parameterType="kr.smhrd.model.MemberVO" resultType="kr.smhrd.model.MemberVO">
+    select email from web_member where email = #{email} and pw = #{pw}
+  </select>
+  
+
+</mapper>

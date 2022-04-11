@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://mybatis.org/schema/mybatis-spring http://mybatis.org/schema/mybatis-spring.xsd
+   http://www.springframework.org/schema/beans https://www.springframework.org/schema/beans/spring-beans.xsd"
+   xmlns:mybatis-spring="http://mybatis.org/schema/mybatis-spring">
+
+	<!-- Root Context: defines shared resources visible to all other web components -->
+	<!-- 히카리 CP 빈 등록 -->
+	<bean id="hikariConfig" class="com.zaxxer.hikari.HikariConfig">
+		<property name="driverClassName"
+			value="oracle.jdbc.driver.OracleDriver">
+		</property>
+		<property name="jdbcUrl"
+			value="jdbc:oracle:thin:@project-db-stu.ddns.net:1524:XE"></property>
+		<property name="username" value="aws_test"></property>
+		<property name="password" value="aws_test"></property>
+	</bean>
+
+	<!-- 히카리 CP 설정 -->
+	<bean id="dataSource" class="com.zaxxer.hikari.HikariDataSource"
+		destroy-method="close">
+		<constructor-arg ref="hikariConfig" />
+	</bean>
+	
+	
+		<bean class="org.mybatis.spring.SqlSessionFactoryBean">
+          <property name="dataSource" ref="dataSource" />
+    </bean>
+		
+	<!-- mapper 폴더 위치 경로! -> 히카리 CP한테 알려줘야함 -->
+	<mybatis-spring:scan base-package="kr.smhrd.mapper"/>
+</beans>
