@@ -11,5 +11,6 @@
 	<a href="join.do"> 회원가입 </a> <br>
 	<a href="login.do"> 로그인 </a>
 	<h1> 1 </h1>
+	<h1> 2 </h1>
 </body>
 </html>
